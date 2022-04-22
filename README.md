@@ -29,9 +29,9 @@
 	+ 와일드카드 *
 
 
-> ##### 허용 함수
->
-> ```c
+##### 허용 함수
+
+ ```c
 readline
 rl_on_new_line
 rl_replace_line
@@ -83,5 +83,4 @@ tputs
 
 + Libft
 ```
->
 
