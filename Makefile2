@@ -1,0 +1,52 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
+#    Updated: 2022/04/23 22:18:29 by youngpar         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME	= minish
+CC		= gcc
+CFLAGS	= -Wall -Wextra -Werror
+LIBS	= -lpthread \
+		  -lreadline
+
+RLDIR	= /opt/homebrew/opt/readline
+RLLIB	= -L $(RLDIR)/lib
+RLINC	= $(RLDIR)/include
+
+INC		= -I ./inc \
+		  -I $(RLINC)
+
+SHDIR	= ./srcs
+SHFILE	= main.c \
+		  ft_utils.c \
+		  combkey.c \
+		  parsing.c \
+		  minishell.c
+
+SRCS	= $(addprefix $(SHDIR)/, $(SHFILE))
+OBJS	= $(SRCS:.c=.o)
+
+.c.o:
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+all		: $(NAME)
+
+$(NAME)	: $(OBJS)
+	$(CC) $(CLFAGS) $(OBJS) $(RLLIB) $(LIBS) -o $(NAME)
+
+clean	:
+	@rm -rf $(OBJS)
+
+fclean	: clean
+	@rm -rf $(NAME)
+
+re		: fclean all
+
+.PHONY	: all $(NAME) clean fclean re
