@@ -1,29 +1,45 @@
-NAME=minishell
-CC=gcc
-CFLAGS=-Werror -Wall -Wextra
-INC=-I ./inc
-RLINC=-I/opt/homebrew/opt/readline/include
-RLLIB=-L/opt/homebrew/opt/readline/lib -lreadline
-SRCS=srcs/main.c\
-	 srcs/combkey.c\
-	 srcs/minishell.c\
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
+#    Updated: 2022/04/23 20:35:35 by youngpar         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-.PHONY: all, re, clean, fclean
+NAME	= minish
+CC		= gcc
+LIBS	= -lpthread \
+		  -lreadline
+CFLAGS	= -Wall -Wextra -Werror
 
-OBJS=$(SRCS:.c=.o)
+INC		= ./include
 
-all: $(NAME)
+SHDIR	= ./shell
+SHFILE	= main.c
 
-%.o: %.c
-	$(CC) $(RLINC) $(CFLAGS) $(INC) -c $^ -o $@
+SHSRC	= $(addprefix $(SHDIR)/, $(SHFILE))
+SHOBJ	= $(SHSRC:.c=.o)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(RLLIB) $^ -o $@
+OBJS	= $(SHOBJ)
 
-clean:
-	rm -rf $(OBJS)
+.c.o:
+	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 
-fclean: clean
-	rm -rf $(NAME)
+all		: $(NAME)
 
-re: fclean all
+$(NAME)	: $(OBJS)
+	$(CC) $(CLFAGS) $(OBJS) $(LIBS) -o $(NAME)
+
+clean	:
+	@rm -rf $(OBJS)
+
+fclean	: clean
+	@rm -rf $(NAME)
+
+re		: fclean all
+
+.PHONY	: all $(NAME) clean fclean re
