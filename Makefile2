@@ -1,16 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile2                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
-#    Updated: 2022/04/23 22:18:29 by youngpar         ###   ########.fr        #
+#    Updated: 2022/04/23 22:30:10 by youngpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= minish
+NAME	= minishell
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 LIBS	= -lpthread \
