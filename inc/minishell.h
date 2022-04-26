@@ -9,13 +9,11 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# include "structure.h"
+# include "../libs/include/libs.h"
+
 # define ET_STR	0
 # define ET_SPE	1
-
-typedef struct	s_elem {
-	char	*data;
-	int		type;
-}	t_elem;
 
 int		set_signal(void);
 int		enter_ctrld(void);
