@@ -7,6 +7,8 @@ RLLIB=-L/opt/homebrew/opt/readline/lib -lreadline
 SRCS=srcs/main.c\
 	 srcs/combkey.c\
 	 srcs/minishell.c\
+	 srcs/parsing.c\
+	 srcs/ft_utils.c\
 
 .PHONY: all, re, clean, fclean
 

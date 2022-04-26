@@ -9,19 +9,23 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# define TY_STR	0
-# define TY_SPE	1
+# define ET_STR	0
+# define ET_SPE	1
 
 typedef struct	s_elem {
 	char	*data;
 	int		type;
-} t_elem
+}	t_elem;
 
 int		set_signal(void);
 int		enter_ctrld(void);
 
+t_elem	*parsing_split(const char *str);
+
 int		minishell(void);
 
-void	*ft_realloc(void *ptr, int befsize, int aftsize);
+char	*ft_realloc(char *ptr, int befsize, int aftsize);
+int		ft_strlen(const char *str);
+char	*ft_makestr(const char *str, int len);
 
 #endif

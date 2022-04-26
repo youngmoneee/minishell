@@ -3,7 +3,7 @@
 int	minishell(void)
 {
 	char	*input;
-	//char	**parsed_input;
+	t_elem	*parsed_input;
 
 	if (set_signal())
 		return (1);
@@ -15,7 +15,12 @@ int	minishell(void)
 		if (*input != '\0')
 		{
 			add_history(input);
-			//parsed_input = parsing(input);
+			parsed_input = parsing_split(input);
+			while (parsed_input->data != 0)
+			{
+				printf("%s\n", parsed_input->data);
+				parsed_input++;
+			}
 			//if (parsed_input == 0)
 				// ERROR!!!
 			// builtin command
