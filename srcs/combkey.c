@@ -11,9 +11,9 @@ static void	signal_handler(int signo)
 	rl_redisplay();
 }
 
-int		set_signal(void)
+int	set_signal(void)
 {
-	struct termios  term;
+	struct termios	term;
 
 	if (tcgetattr(STDIN_FILENO, &term) == -1)
 		return (1);
@@ -27,7 +27,7 @@ int		set_signal(void)
 	return (0);
 }
 
-int		enter_ctrld(void)
+int	enter_ctrld(void)
 {
 	printf("\x1b[1A");
 	rl_on_new_line();
