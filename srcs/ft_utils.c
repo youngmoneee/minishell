@@ -22,7 +22,7 @@ char	*ft_realloc(char *ptr, int befsize, int aftsize)
 	return (ret);
 }
 
-int		ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
 	int	len;
 

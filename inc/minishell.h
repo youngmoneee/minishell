@@ -13,7 +13,9 @@
 # include "../libs/include/libs.h"
 
 # define ET_STR	0
-# define ET_SPE	1
+# define ET_LTS	1
+# define ET_GTS	2
+# define ET_PIP	3
 
 int		set_signal(void);
 int		enter_ctrld(void);
