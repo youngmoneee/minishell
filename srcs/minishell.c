@@ -16,13 +16,13 @@ int	minishell(void)
 		{
 			add_history(input);
 			parsed_input = parsing_split(input);
+			if (parsing_error(parsed_input))
+				printf("PARSING ERROR!!!\n");
 			while (parsed_input->data != 0)
 			{
 				printf("%s\n", parsed_input->data);
 				parsed_input++;
 			}
-			if (parsing_error(parsed_input))
-				printf("PARSING ERROR!!!\n");
 			//if (parsed_input == 0)
 				// ERROR!!!
 			// builtin command

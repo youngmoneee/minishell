@@ -15,7 +15,7 @@ int	parsing_error(t_elem *elems)
 		last_type = elems[i++].type;
 		if (last_type == ET_STR && schar == 1)
 			schar = 0;
-		else
+		if (last_type != ET_STR)
 			schar++;
 	}
 	j = 0;
@@ -23,7 +23,7 @@ int	parsing_error(t_elem *elems)
 	while (elems[i - 1].data[j])
 		if (elems[i - 1].data[j++] == '\'')
 			squot++;
-	return (schar > 2 || squot % 2
+	return (schar > 1 || squot % 2
 		|| last_type == ET_LTS || last_type == ET_GTS);
 }
 
