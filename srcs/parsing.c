@@ -1,5 +1,32 @@
 #include "minishell.h"
 
+int	parsing_error(t_elem *elems)
+{
+	int	i;
+	int	j;
+	int	schar;
+	int	squot;
+	int	last_type;
+
+	i = 0;
+	schar = 0;
+	while (elems[i].data)
+	{
+		last_type = elems[i++].type;
+		if (last_type == ET_STR && schar == 1)
+			schar = 0;
+		else
+			schar++;
+	}
+	j = 0;
+	squot = 0;
+	while (elems[i - 1].data[j])
+		if (elems[i - 1].data[j++] == '\'')
+			squot++;
+	return (schar > 2 || squot % 2
+		|| last_type == ET_LTS || last_type == ET_GTS);
+}
+
 int	is_special(const char *str, t_elem *elem)
 {
 	int	ret;
@@ -8,16 +35,16 @@ int	is_special(const char *str, t_elem *elem)
 	elem->type = ET_STR;
 	if (*str == '<')
 	{
+		ret = 1;
 		if (*(str + 1) == '<')
 			ret = 2;
-		ret = 1;
 		elem->type = ET_LTS;
 	}
 	if (*str == '>')
 	{
+		ret = 1;
 		if (*(str + 1) == '>')
 			ret = 2;
-		ret = 1;
 		elem->type = ET_GTS;
 	}
 	if (*str == '|')

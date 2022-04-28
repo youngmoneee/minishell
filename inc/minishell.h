@@ -22,6 +22,7 @@ typedef struct s_elem {
 int		set_signal(void);
 int		enter_ctrld(void);
 
+int		parsing_error(t_elem *elems);
 t_elem	*parsing_split(const char *str);
 
 int		minishell(void);

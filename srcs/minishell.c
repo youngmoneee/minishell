@@ -21,6 +21,8 @@ int	minishell(void)
 				printf("%s\n", parsed_input->data);
 				parsed_input++;
 			}
+			if (parsing_error(parsed_input))
+				printf("PARSING ERROR!!!\n");
 			//if (parsed_input == 0)
 				// ERROR!!!
 			// builtin command
