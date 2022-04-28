@@ -1,52 +1,41 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile2                                          :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
-#    Updated: 2022/04/23 22:30:10 by youngpar         ###   ########.fr        #
+#    Updated: 2022/04/26 18:55:10 by youngpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= minishell
+TARGET	= libbuiltin.a
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
-LIBS	= -lpthread \
-		  -lreadline
 
-RLDIR	= /opt/homebrew/opt/readline
-RLLIB	= -L $(RLDIR)/lib
-RLINC	= $(RLDIR)/include
+INCDIR	= -I ./include
 
-INC		= -I ./inc \
-		  -I $(RLINC)
+DIR		= ./srcs
+FILE	= echo.c
 
-SHDIR	= ./srcs
-SHFILE	= main.c \
-		  ft_utils.c \
-		  combkey.c \
-		  parsing.c \
-		  minishell.c
-
-SRCS	= $(addprefix $(SHDIR)/, $(SHFILE))
+SRCS	= $(addprefix $(DIR)/, $(FILE))
 OBJS	= $(SRCS:.c=.o)
 
 .c.o:
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCDIR) -c $< -o $@
 
-all		: $(NAME)
+all		: $(TARGET)
 
-$(NAME)	: $(OBJS)
-	$(CC) $(CLFAGS) $(OBJS) $(RLLIB) $(LIBS) -o $(NAME)
+$(TARGET): $(OBJS)
+	ar rcs $(TARGET) $(OBJS)
 
 clean	:
 	@rm -rf $(OBJS)
 
 fclean	: clean
-	@rm -rf $(NAME)
+	@rm -rf $(TARGET)
 
 re		: fclean all
 
-.PHONY	: all $(NAME) clean fclean re
+.PHONY	: all clean fclean re

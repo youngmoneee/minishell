@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 void	print_banner(char *argv[])
 {
@@ -10,6 +10,7 @@ int	main(int argc, char *argv[])
 	if (argc != 1)
 		return (1);
 	print_banner(argv);
+	echo(NULL);
 	minishell();
 	return (0);
 }

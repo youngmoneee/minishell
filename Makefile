@@ -1,31 +1,60 @@
-NAME=minishell
-CC=gcc
-CFLAGS=-Werror -Wall -Wextra
-INC=-I ./inc
-RLINC=-I/opt/homebrew/opt/readline/include
-RLLIB=-L/opt/homebrew/opt/readline/lib -lreadline
-SRCS=srcs/main.c\
-	 srcs/combkey.c\
-	 srcs/minishell.c\
-	 srcs/parsing.c\
-	 srcs/ft_utils.c\
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
+#    Updated: 2022/04/26 18:54:09 by youngpar         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-.PHONY: all, re, clean, fclean
+TARGET	= minishell
+CC		= gcc
+CFLAGS	= -Wall -Wextra -Werror
+LDLIBS	= -lpthread \
+		  -lreadline \
+		  -lbuiltin
 
-OBJS=$(SRCS:.c=.o)
+RLDIR	= /opt/homebrew/opt/readline
+RLINC	= $(RLDIR)/include
 
-all: $(NAME)
+LIBDIR	= -L $(RLDIR)/lib \
+		  -L./libs
 
-%.o: %.c
-	$(CC) $(RLINC) $(CFLAGS) $(INC) -c $^ -o $@
+INCDIR	= -I ./inc \
+		  -I $(RLINC)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(RLLIB) $^ -o $@
+SHDIR	= ./srcs
+SHFILE	= main.c \
+		  ft_utils.c \
+		  combkey.c \
+		  parsing.c \
+		  minishell.c
 
-clean:
+SRCS	= $(addprefix $(SHDIR)/, $(SHFILE))
+OBJS	= $(SRCS:.c=.o)
+
+.c.o:
+	$(CC) $(CFLAGS) $(INCDIR) -c $< -o $@
+
+all		: $(TARGET)
+
+$(TARGET): $(OBJS) library
+	$(CC) $(CLFAGS) $(OBJS) $(LIBDIR) $(LDLIBS) -o $(TARGET)
+
+library	:
+	@make -C libs
+
+clean	:
 	@rm -rf $(OBJS)
+	@make -C libs clean
 
-fclean: clean
-	@rm -rf $(NAME)
+fclean	: clean
+	@rm -rf $(TARGET)
+	@make -C libs fclean
 
-re: fclean all
+re		: fclean all
+
+.PHONY	: all clean fclean re
