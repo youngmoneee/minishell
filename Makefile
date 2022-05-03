@@ -6,13 +6,13 @@
 #    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
-#    Updated: 2022/05/03 20:35:17 by dongkim          ###   ########.fr        #
+#    Updated: 2022/05/03 21:21:52 by dongkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 TARGET	= minishell
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g
 LDLIBS	= -lpthread \
 		  -lreadline \
 		  -lbuiltin

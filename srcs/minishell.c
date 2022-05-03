@@ -12,6 +12,7 @@ int	minishell(void)
 {
 	char	*input;
 	t_elem	*parsed_input;
+	int		i;
 
 	if (set_signal())
 		return (1);
@@ -32,13 +33,14 @@ int	minishell(void)
 				return (print_error("PARSING ERROR!!!\n", parsed_input, input));
 			// builtin command
 			// execute program
-			while (parsed_input->data != 0)
+			i = 0;
+			while (parsed_input[i].data != 0)
 			{
-				printf("%s\n", parsed_input->data);
-				parsed_input++;
+				printf("%s\n", parsed_input[i].data);
+				i++;
 			}
+			clean_elem(parsed_input);
 		}
-		clean_elem(parsed_input);
 		free(input);
 	}
 	return (0);
