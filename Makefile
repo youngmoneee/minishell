@@ -6,18 +6,20 @@
 #    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
-#    Updated: 2022/05/03 21:21:52 by dongkim          ###   ########.fr        #
+#    Updated: 2022/05/04 03:03:03 by dongkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 TARGET	= minishell
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror
 LDLIBS	= -lpthread \
 		  -lreadline \
 		  -lbuiltin
 
 RLDIR	= /opt/homebrew/opt/readline
+CRLDIR	= ~/.brew/opt/readline/
+RLDIR	= $(CRLDIR)
 RLINC	= $(RLDIR)/include
 
 LIBDIR	= -L $(RLDIR)/lib \

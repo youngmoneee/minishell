@@ -1,19 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 03:03:48 by dongkim           #+#    #+#             */
+/*   Updated: 2022/05/04 03:39:43 by dongkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-static int get_quote_len(const char *str)
+static int	get_quote_len(const char *str)
 {
-    char    quote;
-    int     len;
+	char	quote;
+	int		len;
 
-    quote = *str;
-    if (quote == '\'' || quote == '\"')
-    {
-        len = 1;
-        while (str[len] && quote != str[len])
-            len++;
-        return (len);
-    }
-    return (0);
+	quote = *str;
+	if (quote == '\'' || quote == '\"')
+	{
+		len = 1;
+		while (str[len] && quote != str[len])
+			len++;
+		return (len);
+	}
+	return (0);
 }
 
 int	parsing_error(t_elem *elems)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 04:11:34 by dongkim           #+#    #+#             */
+/*   Updated: 2022/05/04 05:44:16 by dongkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -24,11 +36,12 @@ int		parsing_error(t_elem *elems);
 t_elem	*parsing_split(const char *str);
 int		quote_pairing(t_elem *elems);
 
-int		minishell(void);
+int		minishell(char *env[]);
 
 char	*ft_realloc(char *ptr, int befsize, int aftsize);
 int		ft_strlen(const char *str);
 void	ft_strncpy(char *dst, const char *src, int len);
+char	*ft_strinsert(char *str, int idx, char *insert);
 void	*clean_elem(t_elem *elems);
 
 #endif

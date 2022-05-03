@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 03:04:17 by dongkim           #+#    #+#             */
+/*   Updated: 2022/05/04 05:44:14 by dongkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*ft_realloc(char *ptr, int befsize, int aftsize)
@@ -45,36 +57,36 @@ void	ft_strncpy(char *dst, const char *src, int len)
 	dst[i] = 0;
 }
 
-void    *clean_elem(t_elem *elems)
+char	*ft_strinsert(char *str, int idx, char *insert, int cutlen)
 {
-    int i;
+	int		insert_len;
+	int		str_len;
+	char	*ret;
 
-    if (elems)
-    {
-        i = 0;
-        while (elems[i].data)
-        {
-            free(elems[i].data);
-            i++;
-        }
-        free(elems);
-    }
-    return (0);
+	insert_len = ft_strlen(insert);
+	str_len = ft_strlen(str);
+	ret = malloc(sizeof(char) * (str_len + insert_len + 1));
+	if (ret == 0)
+		return (0);
+	ft_strncpy(ret, str, idx);
+	ft_strncpy(&ret[idx], insert, insert_len);
+	ft_strncpy(&ret[idx + insert_len + cutlen], &str[idx], str_len - idx);
+	return (ret);
 }
 
-/*
-int		division(char *str, unsigned char delim)
+void	*clean_elem(t_elem *elems)
 {
-	int	len;
+	int	i;
 
-	len = 0;
-	while (str[len]
-		&& ((delim == '$' && str[len] >= '0' && str[len] <= '9'
-		&& str[len] >= 'a' && str[len] <= 'z'
-		&& str[len] >= 'A' && str[len] <= 'Z'
-		|| (delim != '$' && str[len] != delim))))
+	if (elems)
 	{
-		len++;
+		i = 0;
+		while (elems[i].data)
+		{
+			free(elems[i].data);
+			i++;
+		}
+		free(elems);
 	}
-	return (len);
-}*/
+	return (0);
+}

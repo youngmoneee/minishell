@@ -1,15 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 03:03:39 by dongkim           #+#    #+#             */
+/*   Updated: 2022/05/04 04:41:07 by dongkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int	print_error(char *print, t_elem *elems, char *str)
+int	minishell(char *env[])
 {
-	printf("%s", print);
-	clean_elem(elems);
-	free(str);
-	return (1);
-}
-
-int	minishell(void)
-{
+	env = 0;
 	char	*input;
 	t_elem	*parsed_input;
 	int		i;
@@ -25,14 +30,15 @@ int	minishell(void)
 		{
 			add_history(input);
 			parsed_input = parsing_split(input);
-			if (parsing_error(parsed_input)) // error check
-				return (print_error("PARSING ERROR!!!\n", parsed_input, input));
-			// if (variable transform)
-			//	 printf("PARSING ERROR3333!!!\n");
-			if (quote_pairing(parsed_input))
-				return (print_error("PARSING ERROR!!!\n", parsed_input, input));
-			// builtin command
-			// execute program
+			if (!(parsing_error(parsed_input)
+				// || env transform(parsed_input)
+				|| quote_pairing(parsed_input)))
+			{
+				// builtin command
+				// execute program
+			}
+			else
+				printf("parsing error!!!!!\n");
 			i = 0;
 			while (parsed_input[i].data != 0)
 			{
