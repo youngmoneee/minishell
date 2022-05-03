@@ -32,22 +32,34 @@ int	ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_makestr(const char *str, int len)
+void	ft_strncpy(char *dst, const char *src, int len)
 {
-	char	*ret;
-	int		i;
+	int	i;
 
-	ret = malloc(sizeof(char) * (len + 1));
-	if (ret == 0)
-		return (0);
-	ret[len] = 0;
 	i = 0;
-	while (i < len)
+	while (src[i] && i < len)
 	{
-		ret[i] = str[i];
+		dst[i] = src[i];
 		i++;
 	}
-	return (ret);
+	dst[i] = 0;
+}
+
+void    *clean_elem(t_elem *elems)
+{
+    int i;
+
+    if (elems)
+    {
+        i = 0;
+        while (elems[i].data)
+        {
+            free(elems[i].data);
+            i++;
+        }
+        free(elems);
+    }
+    return (0);
 }
 
 /*

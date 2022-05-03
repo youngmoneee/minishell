@@ -1,11 +1,26 @@
 #include "minishell.h"
 
+static int get_quote_len(const char *str)
+{
+    char    quote;
+    int     len;
+
+    quote = *str;
+    if (quote == '\'' || quote == '\"')
+    {
+        len = 1;
+        while (str[len] && quote != str[len])
+            len++;
+        return (len);
+    }
+    return (0);
+}
+
 int	parsing_error(t_elem *elems)
 {
 	int	i;
 	int	j;
 	int	schar;
-	int	squot;
 	int	last_type;
 
 	i = 0;
@@ -19,15 +34,17 @@ int	parsing_error(t_elem *elems)
 			schar++;
 	}
 	j = 0;
-	squot = 0;
 	while (elems[i - 1].data[j])
-		if (elems[i - 1].data[j++] == '\'')
-			squot++;
-	return (schar > 1 || squot % 2
-		|| last_type == ET_LTS || last_type == ET_GTS);
+	{
+		j += get_quote_len(&elems[i - 1].data[j]);
+		if (elems[i - 1].data[j] == 0)
+			return (1);
+		j++;
+	}
+	return (schar > 1 || last_type == ET_LTS || last_type == ET_GTS);
 }
 
-int	is_special(const char *str, t_elem *elem)
+static int	is_special(const char *str, t_elem *elem)
 {
 	int	ret;
 
@@ -55,10 +72,9 @@ int	is_special(const char *str, t_elem *elem)
 	return (ret);
 }
 
-int	get_elem(const char *str, t_elem *elem)
+static int	get_elem(const char *str, t_elem *elem)
 {
-	int		len;
-	char	delim;
+	int	len;
 
 	len = is_special(str, elem);
 	if (len == 0)
@@ -67,37 +83,16 @@ int	get_elem(const char *str, t_elem *elem)
 			&& str[len] != '<' && str[len] != '>' && str[len] != '|')
 		{
 			if (str[len] == '\'' || str[len] == '\"')
-			{
-				delim = str[len++];
-				while (str[len] && str[len] != delim)
-					len++;
-				if (str[len] == 0)
-					len--;
-			}
-			len++;
+				len += get_quote_len(&str[len]);
+			if (str[len])
+				len++;
 		}
 	}
-	elem->data = ft_makestr(str, len);
+	elem->data = malloc(sizeof(char) * (len + 1));
 	if (elem->data == 0)
 		return (-1);
+	ft_strncpy(elem->data, str, len);
 	return (len);
-}
-
-t_elem	*clean_elem(t_elem *elems, int cnt)
-{
-	int	i;
-
-	if (elems)
-	{
-		i = 0;
-		while (i < cnt)
-		{
-			free(elems[i].data);
-			i++;
-		}
-		free(elems);
-	}
-	return (0);
 }
 
 t_elem	*parsing_split(const char *str)
@@ -113,13 +108,13 @@ t_elem	*parsing_split(const char *str)
 	{
 		ret = (t_elem *)ft_realloc((char *)bef,
 				sizeof(t_elem) * cnt, sizeof(t_elem) * (cnt + 1));
-		if (ret == 0)
-			return (clean_elem(bef, cnt - 1));
+		if (ret == 0 && clean_elem(bef))
+			return (clean_elem(bef));
 		while (*str == ' ')
 			str++;
 		len = get_elem(str, &ret[cnt - 1]);
 		if (len == -1)
-			return (clean_elem(ret, cnt - 1));
+			return (clean_elem(ret));
 		str += len;
 		bef = ret;
 		while (*str == ' ')

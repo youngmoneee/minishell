@@ -1,5 +1,13 @@
 #include "minishell.h"
 
+int	print_error(char *print, t_elem *elems, char *str)
+{
+	printf("%s", print);
+	clean_elem(elems);
+	free(str);
+	return (1);
+}
+
 int	minishell(void)
 {
 	char	*input;
@@ -16,18 +24,21 @@ int	minishell(void)
 		{
 			add_history(input);
 			parsed_input = parsing_split(input);
-			if (parsing_error(parsed_input))
-				printf("PARSING ERROR!!!\n");
+			if (parsing_error(parsed_input)) // error check
+				return (print_error("PARSING ERROR!!!\n", parsed_input, input));
+			// if (variable transform)
+			//	 printf("PARSING ERROR3333!!!\n");
+			if (quote_pairing(parsed_input))
+				return (print_error("PARSING ERROR!!!\n", parsed_input, input));
+			// builtin command
+			// execute program
 			while (parsed_input->data != 0)
 			{
 				printf("%s\n", parsed_input->data);
 				parsed_input++;
 			}
-			//if (parsed_input == 0)
-				// ERROR!!!
-			// builtin command
-			// execute program
 		}
+		clean_elem(parsed_input);
 		free(input);
 	}
 	return (0);

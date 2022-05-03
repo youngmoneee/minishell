@@ -22,11 +22,13 @@ int		enter_ctrld(void);
 
 int		parsing_error(t_elem *elems);
 t_elem	*parsing_split(const char *str);
+int		quote_pairing(t_elem *elems);
 
 int		minishell(void);
 
 char	*ft_realloc(char *ptr, int befsize, int aftsize);
 int		ft_strlen(const char *str);
-char	*ft_makestr(const char *str, int len);
+void	ft_strncpy(char *dst, const char *src, int len);
+void	*clean_elem(t_elem *elems);
 
 #endif
