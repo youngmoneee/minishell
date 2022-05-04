@@ -12,6 +12,9 @@
 # include "structure.h"
 # include "../libs/include/libs.h"
 
+# define TRUE	1
+# define FALSE	0
+
 # define ET_STR	0
 # define ET_LTS	1
 # define ET_GTS	2
@@ -24,8 +27,13 @@ t_elem	*parsing_split(const char *str);
 
 int		minishell(void);
 
+
+/*
+ * ft_utils
+ */
 char	*ft_realloc(char *ptr, int befsize, int aftsize);
 int		ft_strlen(const char *str);
 char	*ft_makestr(const char *str, int len);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

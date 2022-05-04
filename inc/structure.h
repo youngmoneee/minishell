@@ -22,9 +22,30 @@ typedef struct s_argument 	t_argument;
 typedef struct s_option		t_option;
 typedef struct s_elem		t_elem;
 
-struct	s_elem {
+typedef struct s_envs		t_envs;
+typedef struct s_env		t_env;
+
+typedef struct s_glob		t_glob;
+
+struct s_elem
+{
 	char	*data;
 	int		type;
 };
+
+struct s_env
+{
+	char	*key;
+	char	*value;
+	t_env	*next;
+};
+
+// 다 때려박 ㄱ
+struct s_glob
+{
+	t_env	env;
+};
+
+extern t_glob	g_val;
 
 # endif
