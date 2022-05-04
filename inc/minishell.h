@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 04:11:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/04 05:44:16 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/05 02:31:15 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include "structure.h"
 # include "../libs/include/libs.h"
 
+# include "debug.h"
+
 # define ET_STR	0
 # define ET_LTS	1
 # define ET_GTS	2
@@ -32,8 +34,9 @@
 int		set_signal(void);
 int		enter_ctrld(void);
 
+t_elem	*parsing_split(const char *str, int *cnt);
 int		parsing_error(t_elem *elems);
-t_elem	*parsing_split(const char *str);
+int		env_transform(t_elem *elems);
 int		quote_pairing(t_elem *elems);
 
 int		minishell(char *env[]);
@@ -41,7 +44,7 @@ int		minishell(char *env[]);
 char	*ft_realloc(char *ptr, int befsize, int aftsize);
 int		ft_strlen(const char *str);
 void	ft_strncpy(char *dst, const char *src, int len);
-char	*ft_strinsert(char *str, int idx, char *insert);
-void	*clean_elem(t_elem *elems);
+char	*ft_replace(char *str, int idx, char *insert, int cutlen);
+void	*clean_elem(t_elem *elems, int cnt);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:03:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/04 03:39:43 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/05 02:18:18 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,31 +107,30 @@ static int	get_elem(const char *str, t_elem *elem)
 	return (len);
 }
 
-t_elem	*parsing_split(const char *str)
+t_elem	*parsing_split(const char *str, int *cnt)
 {
 	t_elem	*ret;
 	t_elem	*bef;
-	int		cnt;
 	int		len;
 
-	cnt = 1;
+	*cnt = 1;
 	bef = 0;
 	while (*str)
 	{
 		ret = (t_elem *)ft_realloc((char *)bef,
-				sizeof(t_elem) * cnt, sizeof(t_elem) * (cnt + 1));
-		if (ret == 0 && clean_elem(bef))
-			return (clean_elem(bef));
+				sizeof(t_elem) * (*cnt), sizeof(t_elem) * ((*cnt) + 1));
+		if (ret == 0)
+			return (clean_elem(bef, *cnt));
 		while (*str == ' ')
 			str++;
-		len = get_elem(str, &ret[cnt - 1]);
+		len = get_elem(str, &ret[(*cnt) - 1]);
 		if (len == -1)
-			return (clean_elem(ret));
+			return (clean_elem(ret, *cnt));
 		str += len;
 		bef = ret;
 		while (*str == ' ')
 			str++;
-		cnt++;
+		(*cnt)++;
 	}
 	return (ret);
 }

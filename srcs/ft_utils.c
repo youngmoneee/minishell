@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:17 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/04 05:44:14 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/05 02:57:00 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_strncpy(char *dst, const char *src, int len)
 	dst[i] = 0;
 }
 
-char	*ft_strinsert(char *str, int idx, char *insert, int cutlen)
+char	*ft_replace(char *str, int idx, char *insert, int cutlen)
 {
 	int		insert_len;
 	int		str_len;
@@ -65,23 +65,24 @@ char	*ft_strinsert(char *str, int idx, char *insert, int cutlen)
 
 	insert_len = ft_strlen(insert);
 	str_len = ft_strlen(str);
-	ret = malloc(sizeof(char) * (str_len + insert_len + 1));
+	ret = malloc(sizeof(char) * (str_len + insert_len + 1 - cutlen));
 	if (ret == 0)
 		return (0);
 	ft_strncpy(ret, str, idx);
 	ft_strncpy(&ret[idx], insert, insert_len);
-	ft_strncpy(&ret[idx + insert_len + cutlen], &str[idx], str_len - idx);
+	ft_strncpy(&ret[idx + insert_len],
+		&str[idx + cutlen], str_len - idx - cutlen);
 	return (ret);
 }
 
-void	*clean_elem(t_elem *elems)
+void	*clean_elem(t_elem *elems, int cnt)
 {
 	int	i;
 
 	if (elems)
 	{
 		i = 0;
-		while (elems[i].data)
+		while (i < cnt)
 		{
 			free(elems[i].data);
 			i++;

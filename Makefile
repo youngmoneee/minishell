@@ -6,7 +6,7 @@
 #    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
-#    Updated: 2022/05/04 03:03:03 by dongkim          ###   ########.fr        #
+#    Updated: 2022/05/05 02:29:50 by dongkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ LDLIBS	= -lpthread \
 		  -lbuiltin
 
 RLDIR	= /opt/homebrew/opt/readline
-CRLDIR	= ~/.brew/opt/readline/
-RLDIR	= $(CRLDIR)
+#CRLDIR	= ~/.brew/opt/readline/
+#RLDIR	= $(CRLDIR)
 RLINC	= $(RLDIR)/include
 
 LIBDIR	= -L $(RLDIR)/lib \
@@ -33,8 +33,10 @@ SHFILE	= main.c \
 		  ft_utils.c \
 		  combkey.c \
 		  parsing.c \
+		  env_transform.c \
 		  quote_pairing.c \
-		  minishell.c
+		  minishell.c \
+		  debug.c \
 
 SRCS	= $(addprefix $(SHDIR)/, $(SHFILE))
 OBJS	= $(SRCS:.c=.o)
