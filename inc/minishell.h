@@ -24,7 +24,12 @@
 # include "structure.h"
 # include "../libs/include/libs.h"
 
+<<<<<<< HEAD
 # include "debug.h"
+=======
+# define TRUE	1
+# define FALSE	0
+>>>>>>> e702f74bfbad20a155b3a3cda93d08f8ea9929b1
 
 # define ET_STR	0
 # define ET_LTS	1
@@ -41,10 +46,19 @@ int		quote_pairing(t_elem *elems);
 
 int		minishell(char *env[]);
 
+
+/*
+ * ft_utils
+ */
 char	*ft_realloc(char *ptr, int befsize, int aftsize);
 int		ft_strlen(const char *str);
+<<<<<<< HEAD
 void	ft_strncpy(char *dst, const char *src, int len);
 char	*ft_replace(char *str, int idx, char *insert, int cutlen);
 void	*clean_elem(t_elem *elems, int cnt);
+=======
+char	*ft_makestr(const char *str, int len);
+int		ft_strcmp(const char *s1, const char *s2);
+>>>>>>> e702f74bfbad20a155b3a3cda93d08f8ea9929b1
 
 #endif

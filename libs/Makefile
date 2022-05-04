@@ -17,7 +17,8 @@ CFLAGS	= -Wall -Wextra -Werror
 INCDIR	= -I ./include
 
 DIR		= ./srcs
-FILE	= echo.c
+FILE	= echo.c \
+			stack.c
 
 SRCS	= $(addprefix $(DIR)/, $(FILE))
 OBJS	= $(SRCS:.c=.o)

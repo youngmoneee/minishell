@@ -14,5 +14,6 @@
 # define LIBS_H
 
 # include "echo.h"
+# include "pwd.h"
 
 #endif

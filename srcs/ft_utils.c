@@ -75,7 +75,22 @@ char	*ft_replace(char *str, int idx, char *insert, int cutlen)
 	return (ret);
 }
 
+<<<<<<< HEAD
 void	*clean_elem(t_elem *elems, int cnt)
+=======
+int ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 == *s2 && *s1 && *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
+}
+
+/*
+int		division(char *str, unsigned char delim)
+>>>>>>> e702f74bfbad20a155b3a3cda93d08f8ea9929b1
 {
 	int	i;
 
