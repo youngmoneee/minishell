@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:03:39 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/05 02:42:34 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/06 20:53:46 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	minishell(char *env[])
 			parsed_input = parsing_split(input, &cnt);
 			if (!(parsing_error(parsed_input)
 				|| env_transform(parsed_input)
-				))//|| quote_pairing(parsed_input)))
+				|| quote_pairing(parsed_input)))
 			{
 				// builtin command
 				// execute program

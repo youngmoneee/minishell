@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:17 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/05 02:57:00 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/06 20:51:02 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,6 @@ char	*ft_replace(char *str, int idx, char *insert, int cutlen)
 	return (ret);
 }
 
-<<<<<<< HEAD
-void	*clean_elem(t_elem *elems, int cnt)
-=======
 int ft_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 == *s2 && *s1 && *s2)
@@ -88,9 +85,7 @@ int ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
-/*
-int		division(char *str, unsigned char delim)
->>>>>>> e702f74bfbad20a155b3a3cda93d08f8ea9929b1
+void	*clean_elem(t_elem *elems, int cnt)
 {
 	int	i;
 

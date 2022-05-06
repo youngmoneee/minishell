@@ -6,7 +6,7 @@
 #    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
-#    Updated: 2022/04/26 18:55:10 by youngpar         ###   ########.fr        #
+#    Updated: 2022/05/06 20:51:42 by dongkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCDIR	= -I ./include
 
 DIR		= ./srcs
 FILE	= echo.c \
-			stack.c
+			#stack.c
 
 SRCS	= $(addprefix $(DIR)/, $(FILE))
 OBJS	= $(SRCS:.c=.o)
