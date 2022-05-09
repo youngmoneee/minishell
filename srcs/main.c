@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:40 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/09 10:30:29 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/10 00:35:56 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char *argv[], char *env[])
 		//adder("park", "youngseo");
 		//adder("kim", "donghyun");
 		printf("");
-		minishell(m_env);
+		minishell();
 	}
 	return (0);
 }

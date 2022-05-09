@@ -6,15 +6,14 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:03:39 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/06 20:53:46 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/10 00:36:45 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	minishell(char *env[])
+int	minishell()
 {
-	env = 0;
 	char	*input;
 	t_elem	*parsed_input;
 	int		cnt;

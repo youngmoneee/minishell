@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 04:11:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/09 11:06:54 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/10 00:36:27 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		parsing_error(t_elem *elems);
 int		env_transform(t_elem *elems);
 int		quote_pairing(t_elem *elems);
 
-int		minishell(char *env[]);
+int		minishell(void);
 
 /*
  * env_utils
