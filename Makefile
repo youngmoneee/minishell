@@ -6,7 +6,7 @@
 #    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
-#    Updated: 2022/05/05 02:29:50 by dongkim          ###   ########.fr        #
+#    Updated: 2022/05/09 10:17:59 by dongkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ INCDIR	= -I ./inc \
 SHDIR	= ./srcs
 SHFILE	= main.c \
 		  ft_utils.c \
+		  ft_utils2.c \
+		  env_utils.c \
 		  combkey.c \
 		  parsing.c \
 		  env_transform.c \

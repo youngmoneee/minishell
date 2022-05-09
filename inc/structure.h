@@ -6,7 +6,7 @@
 /*   By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 18:18:51 by youngpar          #+#    #+#             */
-/*   Updated: 2022/05/04 04:11:25 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/09 10:29:52 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ typedef struct s_argument 	t_argument;
 typedef struct s_option		t_option;
 typedef struct s_elem		t_elem;
 
-typedef struct s_envs		t_envs;
-typedef struct s_env		t_env;
-
 typedef struct s_glob		t_glob;
 
 struct s_elem
@@ -33,17 +30,10 @@ struct s_elem
 	int		type;
 };
 
-struct s_env
-{
-	char	*key;
-	char	*value;
-	t_env	*next;
-};
-
 // 다 때려박 ㄱ
 struct s_glob
 {
-	t_env	env;
+	char	**env;
 };
 
 extern t_glob	g_val;

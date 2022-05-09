@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:40 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/06 20:52:25 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/09 10:30:29 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,16 @@ int	main(int argc, char *argv[], char *env[])
 	if (argc != 1)
 		return (1);
 	print_banner(argv);
-	echo(NULL);
-	//adder("park", "youngseo");
-	//adder("kim", "donghyun");
-	printf("");
-	minishell(env);
+	g_val.env = copy_env(env);
+	if (m_env == 0)
+		printf("copy env Error");
+	else
+	{
+		echo(NULL);
+		//adder("park", "youngseo");
+		//adder("kim", "donghyun");
+		printf("");
+		minishell(m_env);
+	}
 	return (0);
 }

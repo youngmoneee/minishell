@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 04:11:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/06 20:49:06 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/09 11:06:54 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ int		quote_pairing(t_elem *elems);
 
 int		minishell(char *env[]);
 
+/*
+ * env_utils
+ */
+char	**copy_env(char **env);
+char	*get_env(char *name);
+int		put_env(char *varname);
+int		remove_env(char *name);
 
 /*
  * ft_utils
@@ -52,9 +59,9 @@ char	*ft_realloc(char *ptr, int befsize, int aftsize);
 int		ft_strlen(const char *str);
 void	ft_strncpy(char *dst, const char *src, int len);
 char	*ft_replace(char *str, int idx, char *insert, int cutlen);
-void	*clean_elem(t_elem *elems, int cnt);
-
-char	*ft_makestr(const char *str, int len);
 int		ft_strcmp(const char *s1, const char *s2);
+
+void	*clean_elem(t_elem *elems, int cnt);
+void	*clean_dchar(char **dchar, int cnt);
 
 #endif

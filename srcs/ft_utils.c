@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:17 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/06 20:51:02 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/09 10:15:53 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,4 @@ int ft_strcmp(const char *s1, const char *s2)
 		s2++;
 	}
 	return ((unsigned char)*s1 - (unsigned char)*s2);
-}
-
-void	*clean_elem(t_elem *elems, int cnt)
-{
-	int	i;
-
-	if (elems)
-	{
-		i = 0;
-		while (i < cnt)
-		{
-			free(elems[i].data);
-			i++;
-		}
-		free(elems);
-	}
-	return (0);
 }

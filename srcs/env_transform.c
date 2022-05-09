@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:32 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/05 03:47:56 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/09 10:35:54 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*env_replace(char *str, int *idx)
 		return (str);
 	if (env[0] == 0)
 		return (0);
-	env[1] = getenv(env[0]);
+	env[1] = get_env(env[0]);
 	free(env[0]);
 	if (env[1] == 0)
 		env[1] = "";
@@ -104,4 +104,3 @@ int	env_transform(t_elem *elems)
 	}
 	return (0);
 }
-
