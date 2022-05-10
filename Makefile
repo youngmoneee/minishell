@@ -6,7 +6,7 @@
 #    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
-#    Updated: 2022/05/09 10:17:59 by dongkim          ###   ########.fr        #
+#    Updated: 2022/05/11 00:46:55 by dongkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SHFILE	= main.c \
 		  parsing.c \
 		  env_transform.c \
 		  quote_pairing.c \
+		  elems_to_lst.c \
 		  minishell.c \
 		  debug.c \
 

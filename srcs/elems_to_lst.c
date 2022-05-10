@@ -6,13 +6,13 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 22:19:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/10 22:43:24 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 01:00:07 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_lst	*new_node(int argc, t_elem *elems, int type)
+static t_lst	*new_node(int argc, t_elem *elems, int type)
 {
 	t_lst	*ret;
 	int		i;
@@ -26,9 +26,9 @@ t_lst	*new_node(int argc, t_elem *elems, int type)
 		free(ret);
 		return (0);
 	}
-	t_lst->argc = argc;
-	t_lst->type = type;
-	t_lst->next = 0;
+	ret->argc = argc;
+	ret->type = type;
+	ret->next = 0;
 	i = 0;
 	while (i < argc)
 	{
@@ -39,10 +39,12 @@ t_lst	*new_node(int argc, t_elem *elems, int type)
 	return (ret);
 }
 
-void	add_node_back(t_lst **head, t_lst *node)
+static int	add_node_back(t_lst **head, t_lst *node)
 {
 	t_lst	*tmp;
 
+	if (node == 0)
+		return (0);
 	if (*head)
 	{
 		tmp = *head;
@@ -52,9 +54,10 @@ void	add_node_back(t_lst **head, t_lst *node)
 	}
 	else
 		*head = node;
+	return (1);
 }
 
-void	del_node_front(t_lst **head)
+static int	del_node_front(t_lst **head, int is_deep_clean)
 {
 	t_lst	*tmp;
 
@@ -62,12 +65,41 @@ void	del_node_front(t_lst **head)
 	{
 		tmp = *head;
 		*head = (*head)->next;
-		clean_dchar(tmp->argv, tmp->argc);
+		if (is_deep_clean)
+			clean_dchar(tmp->argv, tmp->argc);
+		else
+			free(tmp->argv);
 		free(tmp);
+		return (1);
 	}
+	return (0);
 }
 
-t_lst	*elems_to_lst(t_elem *elems)
+int	elems_to_lst(t_elem *elems, t_lst **lst)
 {
-	
+	int		argc;
+	int		i;
+	int		type;
+	t_lst	*head;
+
+	printf("-> elems_to_lst\n");
+	i = 0;
+	head = 0;
+	while (elems[i].data)
+	{
+		type = elems[i].type;
+		argc = 0;
+		while (elems[i + argc].data && type == elems[i + argc].type)
+			argc++;
+		if (add_node_back(&head, new_node(argc, &elems[i], type)) == 0)
+		{
+			while (del_node_front(&head, 0))
+				;
+			return (1);
+		}
+		i += argc;	
+	}
+	free(elems);
+	*lst = head;
+	return (0);
 }

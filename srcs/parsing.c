@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:03:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/10 22:38:34 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 00:52:32 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ static int	get_quote_len(const char *str)
 	return (0);
 }
 
-int	parsing_error(t_elem *elems, int cnt)
+int	parsing_error(t_elem *elems)
 {
 	int	i;
 	int	j;
 	int	schar;
 	int	last_type;
 
+	printf("-> parsing_error\n");
 	i = 0;
 	schar = 0;
 	while (elems[i].data)
@@ -50,7 +51,7 @@ int	parsing_error(t_elem *elems, int cnt)
 	{
 		j += get_quote_len(&elems[i - 1].data[j]);
 		if (elems[i - 1].data[j] == 0)
-			return (clean_elem(elems, cnt) == 0);
+			return (1);
 		j++;
 	}
 	return (schar > 1 || last_type == ET_LTS || last_type == ET_GTS);

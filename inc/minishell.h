@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 04:11:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/10 22:36:55 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 00:46:07 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,19 @@
 # define TRUE	1
 # define FALSE	0
 
-# define ET_STR	0
-# define ET_LTS	1
-# define ET_GTS	2
-# define ET_PIP	3
+# define ET_STR	1
+# define ET_LTS	2
+# define ET_GTS	3
+# define ET_PIP	4
 
 int		set_signal(void);
 int		enter_ctrld(void);
 
 t_elem	*parsing_split(const char *str, int *cnt);
-int		parsing_error(t_elem *elems, int cnt);
-int		env_transform(t_elem *elems, int cnt);
-int		quote_pairing(t_elem *elems, int cnt);
+int		parsing_error(t_elem *elems);
+int		env_transform(t_elem *elems);
+int		quote_pairing(t_elem *elems);
+int		elems_to_lst(t_elem *elems, t_lst **lst);
 
 int		minishell(void);
 

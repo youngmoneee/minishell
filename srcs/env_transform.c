@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:32 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/10 22:39:40 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 00:52:55 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,12 @@ static char	*line_env_transform(char *str)
 	return (str);
 }
 
-int	env_transform(t_elem *elems, int cnt)
+int	env_transform(t_elem *elems)
 {
 	int		i;
 	char	*ret;
 
+	printf("-> env_trasnform\n");
 	i = 0;
 	while (elems[i].data)
 	{
@@ -97,7 +98,7 @@ int	env_transform(t_elem *elems, int cnt)
 		{
 			ret = line_env_transform(elems[i].data);
 			if (ret == 0)
-				return (clean_elem(elems, cnt) == 0);
+				return (1);
 			elems[i].data = ret;
 		}
 		i++;

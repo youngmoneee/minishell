@@ -6,17 +6,37 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:03:39 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/10 22:46:52 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 00:51:24 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static t_lst	*get_input_lst(char *input)
+{
+	t_elem	*elems;
+	int		elem_cnt;
+	t_lst	*lst;
+
+	elems = parsing_split(input, &elem_cnt);
+	debug_print_elems(elems, -1);
+	if (elems == 0
+		|| parsing_error(elems)
+		|| env_transform(elems)
+		|| quote_pairing(elems)
+		|| elems_to_lst(elems, &lst))
+	{
+		clean_elem(elems, elem_cnt);
+		printf("==== PARSING ERROR ====\n");
+		return (0);
+	}
+	return (lst);
+}
+
 int	minishell(void)
 {
 	char	*input;
-	t_elem	*parsed_input;
-	int		elem_cnt;
+	t_lst	*parsed_input;
 
 	if (set_signal())
 		return (1);
@@ -28,17 +48,13 @@ int	minishell(void)
 		if (*input != '\0')
 		{
 			add_history(input);
-			parsed_input = parsing_split(input, &elem_cnt);
-			if (!(parsing_error(parsed_input, elem_cnt)
-				|| env_transform(parsed_input, elem_cnt)
-				|| quote_pairing(parsed_input, elem_cnt)))
+			parsed_input = get_input_lst(input);
+			if (parsed_input)
 			{
+				printf("====== SUCCESS!!! ======= \n");
 				// builtin command
 				// execute program
-				debug_print_elems(parsed_input, -1);
 			}
-			else
-				printf("parsing error!!!!!\n");
 		}
 		free(input);
 	}
