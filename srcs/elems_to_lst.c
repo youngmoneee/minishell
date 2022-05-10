@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 22:19:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 01:00:07 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 06:50:50 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	add_node_back(t_lst **head, t_lst *node)
 	return (1);
 }
 
-static int	del_node_front(t_lst **head, int is_deep_clean)
+int	del_node_front(t_lst **head, int is_deep_clean)
 {
 	t_lst	*tmp;
 
@@ -65,9 +65,9 @@ static int	del_node_front(t_lst **head, int is_deep_clean)
 	{
 		tmp = *head;
 		*head = (*head)->next;
-		if (is_deep_clean)
+		if (is_deep_clean == 2)
 			clean_dchar(tmp->argv, tmp->argc);
-		else
+		else if (is_deep_clean == 1)
 			free(tmp->argv);
 		free(tmp);
 		return (1);
@@ -93,7 +93,7 @@ int	elems_to_lst(t_elem *elems, t_lst **lst)
 			argc++;
 		if (add_node_back(&head, new_node(argc, &elems[i], type)) == 0)
 		{
-			while (del_node_front(&head, 0))
+			while (del_node_front(&head, 1))
 				;
 			return (1);
 		}

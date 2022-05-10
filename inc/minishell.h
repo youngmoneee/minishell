@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 04:11:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 00:46:07 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 06:51:19 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int		parsing_error(t_elem *elems);
 int		env_transform(t_elem *elems);
 int		quote_pairing(t_elem *elems);
 int		elems_to_lst(t_elem *elems, t_lst **lst);
+
+int		del_node_front(t_lst **head, int is_deep_clean);
 
 int		minishell(void);
 
