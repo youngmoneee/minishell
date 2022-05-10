@@ -6,17 +6,17 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:03:39 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/10 00:36:45 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/10 22:46:52 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	minishell()
+int	minishell(void)
 {
 	char	*input;
 	t_elem	*parsed_input;
-	int		cnt;
+	int		elem_cnt;
 
 	if (set_signal())
 		return (1);
@@ -28,18 +28,17 @@ int	minishell()
 		if (*input != '\0')
 		{
 			add_history(input);
-			parsed_input = parsing_split(input, &cnt);
-			if (!(parsing_error(parsed_input)
-				|| env_transform(parsed_input)
-				|| quote_pairing(parsed_input)))
+			parsed_input = parsing_split(input, &elem_cnt);
+			if (!(parsing_error(parsed_input, elem_cnt)
+				|| env_transform(parsed_input, elem_cnt)
+				|| quote_pairing(parsed_input, elem_cnt)))
 			{
 				// builtin command
 				// execute program
+				debug_print_elems(parsed_input, -1);
 			}
 			else
 				printf("parsing error!!!!!\n");
-			debug_print_elems(parsed_input, -1);
-			clean_elem(parsed_input, cnt - 1);
 		}
 		free(input);
 	}

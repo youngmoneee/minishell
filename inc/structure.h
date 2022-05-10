@@ -6,7 +6,7 @@
 /*   By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 18:18:51 by youngpar          #+#    #+#             */
-/*   Updated: 2022/05/10 00:49:20 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/10 22:42:38 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 
 typedef int					t_bool;
 typedef struct s_option		t_option;
-typedef struct s_arg 		t_arg;
+typedef struct s_argument	t_argument;
 typedef struct s_elem		t_elem;
+typedef struct s_lst 		t_lst;
 
 typedef struct s_glob		t_glob;
 
@@ -30,12 +31,12 @@ struct s_elem
 	int		type;
 };
 
-struct s_arg
+struct s_lst
 {
 	int				argc;
 	char			**argv;
 	int				type;
-	struct s_arg	*next;
+	struct s_lst	*next;
 };
 
 // 다 때려박 ㄱ

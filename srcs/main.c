@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:40 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/10 00:35:56 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/10 22:43:07 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[], char *env[])
 		return (1);
 	print_banner(argv);
 	g_val.env = copy_env(env);
-	if (m_env == 0)
+	if (g_val.env == 0)
 		printf("copy env Error");
 	else
 	{

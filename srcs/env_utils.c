@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:10:19 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/09 11:10:22 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/10 22:43:44 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	get_env_idx(char *name)
 		while (g_val.env[i][j] != '=' && g_val.env[i][j] == name[j])
 			j++;
 		if (g_val.env[i][j] == '=' && name[j] == 0)
-			return (i)
+			return (i);
 		i++;
 	}
 	return (-1);
@@ -80,7 +80,7 @@ int	put_env(char *varname)
 		i++;
 	new_env = malloc(sizeof(char *) * (i + 2));
 	if (new_env == 0)
-		reutrn (-1);
+		return (-1);
 	i = 0;
 	while (g_val.env[i])
 	{

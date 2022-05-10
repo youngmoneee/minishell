@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 04:11:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/10 00:36:27 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/10 22:36:55 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int		set_signal(void);
 int		enter_ctrld(void);
 
 t_elem	*parsing_split(const char *str, int *cnt);
-int		parsing_error(t_elem *elems);
-int		env_transform(t_elem *elems);
-int		quote_pairing(t_elem *elems);
+int		parsing_error(t_elem *elems, int cnt);
+int		env_transform(t_elem *elems, int cnt);
+int		quote_pairing(t_elem *elems, int cnt);
 
 int		minishell(void);
 

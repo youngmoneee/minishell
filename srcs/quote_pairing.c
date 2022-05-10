@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:25 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/05 02:19:17 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/10 22:39:58 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,23 @@ static void	cp_without_quote(char *dst, char *src)
 	dst[i] = 0;
 }
 
-int	quote_pairing(t_elem *elems)
+int	quote_pairing(t_elem *elems, int cnt)
 {
 	char	*bef;
 	char	*aft;
+	int		i;
 
-	while (elems->data)
+	i = 0;
+	while (elems[i].data)
 	{
-		bef = elems->data;
+		bef = elems[i].data;
 		aft = malloc(sizeof(char) * (ft_strlen(bef) + 1));
 		if (aft == 0)
-			return (0);
+			return (clean_elem(elems, cnt) == 0);
 		cp_without_quote(aft, bef);
-		elems->data = aft;
+		elems[i].data = aft;
 		free(bef);
-		elems++;
+		i++;
 	}
 	return (0);
 }

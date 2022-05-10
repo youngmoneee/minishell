@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:03:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/05 02:18:18 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/10 22:38:34 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	get_quote_len(const char *str)
 	return (0);
 }
 
-int	parsing_error(t_elem *elems)
+int	parsing_error(t_elem *elems, int cnt)
 {
 	int	i;
 	int	j;
@@ -50,7 +50,7 @@ int	parsing_error(t_elem *elems)
 	{
 		j += get_quote_len(&elems[i - 1].data[j]);
 		if (elems[i - 1].data[j] == 0)
-			return (1);
+			return (clean_elem(elems, cnt) == 0);
 		j++;
 	}
 	return (schar > 1 || last_type == ET_LTS || last_type == ET_GTS);
