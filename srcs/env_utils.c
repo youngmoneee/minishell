@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:10:19 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/10 22:43:44 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 17:20:51 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 char	**copy_env(char **env)
 {
 	char	**ret;
-	int		len;
 	int		i;
 
-	len = 0;
-	while (env[len])
-		len++;
-	ret = malloc(sizeof(char *) * (len + 1));
+	g_val.env_len = 0;
+	while (env[g_val.env_len])
+		g_val.env_len++;
+	ret = malloc(sizeof(char *) * (g_val.env_len + 1));
 	if (ret == 0)
 		return (0);
 	i = 0;
-	while (i < len)
+	while (i < g_val.env_len)
 	{
 		ret[i] = malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
 		if (ret[i] == 0)
@@ -75,10 +74,7 @@ int	put_env(char *varname)
 	int		i;
 	char	**new_env;
 
-	i = 0;
-	while (g_val.env[i])
-		i++;
-	new_env = malloc(sizeof(char *) * (i + 2));
+	new_env = malloc(sizeof(char *) * (g_val.env_len + 2));
 	if (new_env == 0)
 		return (-1);
 	i = 0;
@@ -91,6 +87,7 @@ int	put_env(char *varname)
 	new_env[i + 1] = 0;
 	free(g_val.env);
 	g_val.env = new_env;
+	g_val.env_len++;
 	return (0);
 }
 

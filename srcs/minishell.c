@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:03:39 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 07:17:18 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 17:19:01 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ int	minishell(void)
 			{
 				printf("====== SUCCESS!!! ======= \n");
 				debug_print_lst(parsed_input, -1);
-				// builtin command
-				// execute program
 			}
 		}
+		while (del_node_front(&parsed_input, 2))
+			;
 		free(input);
 	}
 	return (0);

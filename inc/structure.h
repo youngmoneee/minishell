@@ -6,7 +6,7 @@
 /*   By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 18:18:51 by youngpar          #+#    #+#             */
-/*   Updated: 2022/05/10 22:42:38 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 17:17:57 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ struct s_lst
 struct s_glob
 {
 	char	**env;
+	int		env_len;
 };
 
 extern t_glob	g_val;

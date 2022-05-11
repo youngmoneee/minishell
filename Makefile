@@ -6,7 +6,7 @@
 #    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
-#    Updated: 2022/05/11 00:46:55 by dongkim          ###   ########.fr        #
+#    Updated: 2022/05/11 16:04:11 by dongkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ LDLIBS	= -lpthread \
 		  -lbuiltin
 
 RLDIR	= /opt/homebrew/opt/readline
-#CRLDIR	= ~/.brew/opt/readline/
-#RLDIR	= $(CRLDIR)
+CRLDIR	= ~/.brew/opt/readline/
+RLDIR	= $(CRLDIR)
 RLINC	= $(RLDIR)/include
 
 LIBDIR	= -L $(RLDIR)/lib \

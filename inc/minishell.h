@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 04:11:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 06:51:19 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 17:17:55 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 # define TRUE	1
 # define FALSE	0
 
-# define ET_STR	1
-# define ET_LTS	2
-# define ET_GTS	3
-# define ET_PIP	4
+# define ET_STR	4
+# define ET_LTS 8
+# define ET_GTS	16
+# define ET_PIP	32
 
 int		set_signal(void);
 int		enter_ctrld(void);
