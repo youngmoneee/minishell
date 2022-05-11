@@ -15,5 +15,5 @@
 
 # include "echo.h"
 # include "pwd.h"
-
+# include "path.h"
 #endif

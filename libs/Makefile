@@ -6,7 +6,7 @@
 #    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
-#    Updated: 2022/05/11 18:46:36 by youngpar         ###   ########.fr        #
+#    Updated: 2022/05/12 02:54:58 by youngpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ INCDIR	= -I ./include
 
 DIR		= ./srcs
 FILE	= echo.c \
+		  path.c
 			#stack.c
 
 SRCS	= $(addprefix $(DIR)/, $(FILE))
