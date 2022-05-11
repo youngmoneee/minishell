@@ -6,36 +6,48 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 22:19:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 17:03:09 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 18:28:16 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_lst	*new_node(int argc, t_elem *elems, int type)
+static void	sub_new_node(t_fd **to, t_elem *from)
+{
+	to[0]->type = from->type;
+	to[0]->subtype = from->subtype;
+	to[0]->file_name = from->data;
+}
+
+static t_lst	*new_node(int pipe_idx, t_elem *elems)
 {
 	t_lst	*ret;
-	int		i;
 
-	ret = malloc(sizeof(t_lst));
+	ret = ft_realloc(0, 0, sizeof(t_lst), 0);
 	if (ret == 0)
 		return (0);
-	ret->argv = malloc(sizeof(char *) * (argc + 1));
-	if (ret->argv == 0)
+	while (ret->fdc + ret->argc < pipe_idx)
 	{
-		free(ret);
-		return (0);
+		if (elems[ret->fdc + ret->argc].type != ET_STR)
+		{
+			ret->fdv = ft_realloc(ret->fdv, ret->fdc, ret->fdc + 1, 1);
+			if (ret->fdv == 0)
+				return (0);
+			free(elems[ret->fdc + ret->argc].data);
+			ret->fdv[ret->fdc].type = elems[ret->fdc + ret->argc].type;
+			ret->fdv[ret->fdc].subtype = elems[ret->fdc + ret->argc].subtype;
+			ret->fdv[ret->fdc].file_name = elems[ret->fdc + ret->argc + 1].data;
+			ret->fdc += 2;
+		}
+		else
+		{
+			ret->argv = ft_realloc(ret->argv, ret->argc, ret->argc + 1, 1);
+			if (ret->argv == 0)
+				return (0);
+			ret->argv[ret->argc] = elems[ret->fdc + ret->argc].data;
+			ret->argc++;
+		}
 	}
-	ret->argc = argc;
-	ret->type = type;
-	ret->next = 0;
-	i = 0;
-	while (i < argc)
-	{
-		ret->argv[i] = elems[i].data;
-		i++;
-	}
-	ret->argv[i] = 0;
 	return (ret);
 }
 
@@ -77,27 +89,26 @@ int	del_node_front(t_lst **head, int is_deep_clean)
 
 int	elems_to_lst(t_elem *elems, t_lst **lst)
 {
-	int		argc;
 	int		i;
-	int		type;
+	int		pipe_idx;
 	t_lst	*head;
 
-	printf("-> elems_to_lst\n");
 	i = 0;
 	head = 0;
 	while (elems[i].data)
 	{
-		type = elems[i].type;
-		argc = 0;
-		while (elems[i + argc].data && type == elems[i + argc].type)
-			argc++;
+		pipe_idx = 0;
+		while (elems[i + pipe_idx].data && elems[i + pipe_idx].type == ET_PIP)
+			pipe_idx++;
+
 		if (add_node_back(&head, new_node(argc, &elems[i], type)) == 0)
 		{
 			while (del_node_front(&head, 1))
 				;
 			return (1);
 		}
-		i += argc;	
+
+		i += pipe_idx;	
 	}
 	free(elems);
 	*lst = head;

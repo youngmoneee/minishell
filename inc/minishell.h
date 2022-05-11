@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 04:11:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 17:17:55 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 18:01:08 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		remove_env(char *name);
 /*
  * ft_utils
  */
-char	*ft_realloc(char *ptr, int befsize, int aftsize);
+void	*ft_realloc(void *ptr, int befsize, int aftsize);
 int		ft_strlen(const char *str);
 void	ft_strncpy(char *dst, const char *src, int len);
 char	*ft_replace(char *str, int idx, char *insert, int cutlen);
