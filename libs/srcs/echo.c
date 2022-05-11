@@ -6,7 +6,7 @@
 /*   By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 17:23:52 by youngpar          #+#    #+#             */
-/*   Updated: 2022/04/26 18:36:47 by youngpar         ###   ########.fr       */
+/*   Updated: 2022/05/11 18:50:00 by youngpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,28 @@ t_bool	parse_option(const char *str)
 	return (ret);
 }
 
-//	echo가 str 리턴하고 쉘에서 리다이렉션 없으면 출력? 문자열을 인자로 다음 오퍼레이션한테?
-t_bool	echo(t_argument *arg)
+int	echo(int argc, char *argv[])
 {
-	if (arg || !arg)
-		printf("Echo test\n");
+	int	idx;
+
+	idx = -1;
+	if (argv[0][0] == '-' && argv[0][1] == 'n' && !argv[0][2])
+	{
+		idx = 0;
+		while (++idx < argc)
+			if (idx == argc - 1)
+				printf("%s", argv[idx]);
+			else
+				printf("%s ", argv[idx]);
+	}
+	else
+	{
+		while (++idx < argc)
+			if (idx == argc - 1)
+				printf("%s", argv[idx]);
+			else
+				printf("%s ", argv[idx]);
+		printf("\n");
+	}
 	return (0);
 }

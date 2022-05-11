@@ -6,13 +6,13 @@
 #    By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 21:45:14 by youngpar          #+#    #+#              #
-#    Updated: 2022/05/06 20:51:42 by dongkim          ###   ########.fr        #
+#    Updated: 2022/05/11 18:46:36 by youngpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 TARGET	= libbuiltin.a
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+#CFLAGS	= -Wall -Wextra -Werror
 
 INCDIR	= -I ./include
 
@@ -38,5 +38,8 @@ fclean	: clean
 	@rm -rf $(TARGET)
 
 re		: fclean all
+
+test	: $(TARGET)
+	$(CC) $(CFLAGS) -L . -lbuiltin test.c -o tc
 
 .PHONY	: all clean fclean re
