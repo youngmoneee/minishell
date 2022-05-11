@@ -6,13 +6,13 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:17 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 13:09:03 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 18:16:16 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_realloc(char *ptr, int befsize, int aftsize)
+void	*ft_realloc(void *ptr, int befsize, int aftsize, int is_rec)
 {
 	char	*ret;
 	int		i;
@@ -23,7 +23,7 @@ char	*ft_realloc(char *ptr, int befsize, int aftsize)
 		i = 0;
 		while (ptr && i < befsize)
 		{
-			ret[i] = ptr[i];
+			ret[i] = ((char *)ptr)[i];
 			i++;
 		}
 		while (i < aftsize)
@@ -31,7 +31,12 @@ char	*ft_realloc(char *ptr, int befsize, int aftsize)
 		if (ptr)
 			free(ptr);
 	}
-	return (ret);
+	else
+	{
+		if (ptr && is_rec)
+			free(ptr);
+	}
+	return ((void *)ret);
 }
 
 int	ft_strlen(const char *str)

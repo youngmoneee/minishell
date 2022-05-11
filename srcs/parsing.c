@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:03:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 17:17:38 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 18:16:32 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static int	is_special(const char *str, t_elem *elem)
 		ret = 1;
 		elem->type = ET_PIP;
 	}
+	elem->subtype = ret;
 	return (ret);
 }
 
@@ -119,7 +120,7 @@ t_elem	*parsing_split(const char *str, int *cnt)
 	while (*str)
 	{
 		ret = (t_elem *)ft_realloc((char *)bef,
-				sizeof(t_elem) * (*cnt), sizeof(t_elem) * ((*cnt) + 1));
+				sizeof(t_elem) * (*cnt), sizeof(t_elem) * ((*cnt) + 1), 0);
 		if (ret == 0)
 			return (clean_elem(bef, *cnt));
 		while (*str == ' ')

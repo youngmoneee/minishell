@@ -6,7 +6,7 @@
 /*   By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 18:18:51 by youngpar          #+#    #+#             */
-/*   Updated: 2022/05/11 17:17:57 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/11 18:21:56 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 typedef int					t_bool;
 typedef struct s_option		t_option;
 typedef struct s_argument	t_argument;
+
 typedef struct s_elem		t_elem;
+typedef struct s_fd			t_fd;
 typedef struct s_lst 		t_lst;
 
 typedef struct s_glob		t_glob;
@@ -29,13 +31,22 @@ struct s_elem
 {
 	char	*data;
 	int		type;
+	int		subtype;
+};
+
+struct s_fd
+{
+	int		type;
+	int		subtype;
+	char	*file_name;
 };
 
 struct s_lst
 {
 	int				argc;
 	char			**argv;
-	int				type;
+	int				fdc;
+	struct s_fd		*fdv;
 	struct s_lst	*next;
 };
 
