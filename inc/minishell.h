@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 04:11:34 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 18:01:08 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:41:22 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_elem	*parsing_split(const char *str, int *cnt);
 int		parsing_error(t_elem *elems);
 int		env_transform(t_elem *elems);
 int		quote_pairing(t_elem *elems);
-int		elems_to_lst(t_elem *elems, t_lst **lst);
+int		elems_to_lst(t_elem *elems, int elem_cnt, t_lst **lst);
 
 int		del_node_front(t_lst **head, int is_deep_clean);
 
@@ -58,7 +58,7 @@ int		remove_env(char *name);
 /*
  * ft_utils
  */
-void	*ft_realloc(void *ptr, int befsize, int aftsize);
+void	*ft_realloc(void *ptr, int befsize, int aftsize, int is_rec);
 int		ft_strlen(const char *str);
 void	ft_strncpy(char *dst, const char *src, int len);
 char	*ft_replace(char *str, int idx, char *insert, int cutlen);

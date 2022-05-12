@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 02:26:47 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 01:11:28 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:52:31 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,24 @@ void	print_node(t_lst *node)
 {
 	int	i;
 
-	i = 0;
+	printf("===== NODE =====\n");
 	printf("int argc:\t%d\n", node->argc);
 	printf("char** argv:\t%p\n", node->argv);
+	i = 0;
 	while (node->argv[i])
 	{
 		printf(" -> [%s]\n", node->argv[i]);
 		i++;
 	}
-	printf("type:\t\t%d\n", node->type);
+	printf("int fdc:\t%d\n", node->fdc);
+	printf("s_fd* fdv:\t%p\n", node->fdv);
+	i = 0;
+	while (i < node->fdc)
+	{
+		printf(" -> [%s] - type:%d.%d\n", node->fdv[i].file,
+				node->fdv[i].type, node->fdv[i].subtype);
+		i++;
+	}
 	printf("next:\t\t%p\n", node->next);
 	printf("\n");
 }

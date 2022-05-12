@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:03:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 18:16:32 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:41:26 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,17 +115,17 @@ t_elem	*parsing_split(const char *str, int *cnt)
 	t_elem	*bef;
 	int		len;
 
-	*cnt = 1;
+	*cnt = 0;
 	bef = 0;
 	while (*str)
 	{
-		ret = (t_elem *)ft_realloc((char *)bef,
-				sizeof(t_elem) * (*cnt), sizeof(t_elem) * ((*cnt) + 1), 0);
+		ret = (t_elem *)ft_realloc(bef,
+				sizeof(t_elem) * (*cnt + 1), sizeof(t_elem) * (*cnt + 2), 0);
 		if (ret == 0)
 			return (clean_elem(bef, *cnt));
 		while (*str == ' ')
 			str++;
-		len = get_elem(str, &ret[(*cnt) - 1]);
+		len = get_elem(str, &ret[*cnt]);
 		if (len == -1)
 			return (clean_elem(ret, *cnt));
 		str += len;

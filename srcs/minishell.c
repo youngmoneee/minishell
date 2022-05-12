@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:03:39 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 17:56:55 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:50:31 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ static t_lst	*get_input_lst(char *input)
 	int		elem_cnt;
 	t_lst	*lst;
 
+	lst = 0;
 	elems = parsing_split(input, &elem_cnt);
 	debug_print_elems(elems, -1);
 	if (elems == 0
 		|| parsing_error(elems)
 		|| env_transform(elems)
 		|| quote_pairing(elems)
-		|| elems_to_lst(elems, &lst))
+		|| elems_to_lst(elems, elem_cnt, &lst))
 	{
 		clean_elem(elems, elem_cnt);
 		printf("==== PARSING ERROR ====\n");
@@ -55,6 +56,8 @@ int	minishell(void)
 				debug_print_lst(parsed_input, -1);
 			}
 		}
+		while (del_node_front(&parsed_input, 2))
+			;
 		free(input);
 	}
 	return (0);

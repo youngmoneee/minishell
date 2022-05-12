@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:17 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 18:16:16 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:47:16 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,9 @@ void	*ft_realloc(void *ptr, int befsize, int aftsize, int is_rec)
 		}
 		while (i < aftsize)
 			ret[i++] = 0;
-		if (ptr)
-			free(ptr);
 	}
-	else
-	{
-		if (ptr && is_rec)
-			free(ptr);
-	}
+	if (is_rec)
+		free(ptr);
 	return ((void *)ret);
 }
 
@@ -80,7 +75,7 @@ char	*ft_replace(char *str, int idx, char *insert, int cutlen)
 	return (ret);
 }
 
-int ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 == *s2 && *s1 && *s2)
 	{

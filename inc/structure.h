@@ -6,7 +6,7 @@
 /*   By: youngpar <youngseo321@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 18:18:51 by youngpar          #+#    #+#             */
-/*   Updated: 2022/05/11 18:21:56 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/12 15:32:22 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ struct s_elem
 
 struct s_fd
 {
+	char	*file;
 	int		type;
 	int		subtype;
-	char	*file_name;
 };
 
 struct s_lst

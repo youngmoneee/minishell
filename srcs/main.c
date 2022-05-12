@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.f>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 03:04:40 by dongkim           #+#    #+#             */
-/*   Updated: 2022/05/11 17:20:10 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/05/12 15:34:05 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(int argc, char *argv[], char *env[])
 		printf("copy env Error");
 	else
 	{
-		echo(NULL);
 		minishell();
 	}
 	clean_dchar(g_val.env, g_val.env_len);
