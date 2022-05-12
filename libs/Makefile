@@ -18,7 +18,9 @@ INCDIR	= -I ./include
 
 DIR		= ./srcs
 FILE	= echo.c \
-		  path.c
+		  path.c \
+		  pwd.c \
+		  cd.c
 			#stack.c
 
 SRCS	= $(addprefix $(DIR)/, $(FILE))

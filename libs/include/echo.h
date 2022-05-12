@@ -13,21 +13,7 @@
 #ifndef ECHO_H
 # define ECHO_H
 
-# include <stdio.h>
 # include "../../inc/structure.h"
-
-struct s_option
-{
-	t_bool	n;
-};
-
-struct s_argument
-{
-	t_option	option;
-	t_elem		elem;
-};
-
-
 /*
  *	Interface
  */

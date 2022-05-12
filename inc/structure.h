@@ -17,9 +17,9 @@
  * Interface
  */
 
+# define BUFSIZE	1024
+
 typedef int					t_bool;
-typedef struct s_option		t_option;
-typedef struct s_argument	t_argument;
 
 typedef struct s_elem		t_elem;
 typedef struct s_fd			t_fd;

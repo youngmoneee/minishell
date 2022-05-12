@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/echo.h"
+#include <stdio.h>
+#include "../../inc/structure.h"
 
 t_bool	parse_option(const char *str)
 {
